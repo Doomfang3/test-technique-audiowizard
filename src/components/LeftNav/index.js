@@ -1,20 +1,26 @@
 import React from 'react';
 
-const LeftNav = ({ textArray, linkArray }) => {
-  const links = linkArray.map((link, index) => {
+const LeftNav = ({ navLinks }) => {
+  const links = navLinks.linkArray.map((link, index) => {
     return (
-      <li>
-        <a href={link}>{textArray[index]}</a>
+      <li className="nav-item" key={navLinks.textArray[index]}>
+        <a
+          className="nav-link btn btn-outline-primary btn-sm py-4"
+          role="button"
+          href={link}
+        >
+          {navLinks.textArray[index]}
+        </a>
       </li>
     );
   });
 
   return (
-    <>
-      <nav>
-        <ul>{links}</ul>
-      </nav>
-    </>
+    <nav className="col-md-2 d-none d-md-block bg-light sidebar">
+      <div className="d-flex justify-content-center sidebar-sticky">
+        <ul className="nav flex-column justify-content-around">{links}</ul>
+      </div>
+    </nav>
   );
 };
 
