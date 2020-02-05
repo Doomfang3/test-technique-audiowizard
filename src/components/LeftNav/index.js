@@ -5,7 +5,11 @@ const LeftNav = ({ navLinks }) => {
     return (
       <li className="nav-item" key={navLinks.textArray[index]}>
         <a
-          className="nav-link btn btn-outline-primary btn-sm py-4"
+          className={
+            index === 0
+              ? 'nav-link btn btn-outline-primary btn-sm active py-4'
+              : 'nav-link btn btn-outline-primary btn-sm py-4'
+          }
           role="button"
           href={link}
         >
