@@ -26,3 +26,11 @@
     position: sticky;
   }
 }
+
+/*
+ * Content
+ */
+
+.main {
+  height: calc(100vh - 90px);
+}

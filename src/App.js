@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import MainApp from './components/MainApp';
 import TopNav from './components/TopNav';
@@ -10,6 +10,11 @@ import ThirdStep from './components/ThirdStep';
 import logo from './images/audowizard-logo-white.png';
 
 const App = () => {
+  const [CurrentDisplay, setCurrentDisplay] = useState('FirstStep');
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [isMan, setIsMan] = useState(true);
+
   const navLinks = {
     textArray: [
       'Première visite',
@@ -22,8 +27,6 @@ const App = () => {
     linkArray: ['#', '#', '#', '#', '#', '#'],
   };
 
-  let CurrentDisplay = 'SecondStep';
-
   return (
     <>
       <TopNav image={logo} buttonText="Mon Compte" />
@@ -32,11 +35,19 @@ const App = () => {
           <LeftNav navLinks={navLinks} />
           <MainApp>
             {CurrentDisplay === 'FirstStep' ? (
-              <FirstStep />
+              <FirstStep
+                onClick={setCurrentDisplay}
+                setFirstname={setFirstname}
+                setLastname={setLastname}
+              />
             ) : CurrentDisplay === 'SecondStep' ? (
-              <SecondStep />
+              <SecondStep onClick={setCurrentDisplay} setGender={setIsMan} />
             ) : CurrentDisplay === 'ThirdStep' ? (
-              <ThirdStep />
+              <ThirdStep
+                isMan={isMan}
+                firstname={firstname}
+                lastname={lastname}
+              />
             ) : (
               <p className="text-center">On dirait qu'il y a une erreur...</p>
             )}
