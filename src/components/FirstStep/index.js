@@ -11,8 +11,6 @@ const FirstStep = props => {
   } = useContext(FirstVisitContext);
   const handleSubmit = event => {
     event.preventDefault();
-    setFirstname(document.getElementById('input-firstname').value);
-    setLastname(document.getElementById('input-lastname').value);
     setCurrentDisplay('SecondStep');
   };
 
@@ -27,7 +25,8 @@ const FirstStep = props => {
               type="text"
               className="form-control form-control-lg"
               placeholder="Nom"
-              value={lastname !== '' ? lastname : null}
+              value={lastname}
+              onChange={e => setLastname(e.target.value)}
               required
             />
           </div>
@@ -37,7 +36,8 @@ const FirstStep = props => {
               type="text"
               className="form-control form-control-lg"
               placeholder="Prénom"
-              value={firstname !== '' ? firstname : null}
+              value={firstname}
+              onChange={e => setFirstname(e.target.value)}
               required
             />
           </div>

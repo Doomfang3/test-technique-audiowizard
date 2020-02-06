@@ -3,7 +3,7 @@ import { LinkContext } from '../../contexts/LinkContext';
 
 const LeftNav = () => {
   const { links } = useContext(LinkContext);
-  console.log(links)
+
   return (
     <nav className="col-md-2 d-none d-md-block bg-light sidebar">
       <div className="d-flex justify-content-center sidebar-sticky">
