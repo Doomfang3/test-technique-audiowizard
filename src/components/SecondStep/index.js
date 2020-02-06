@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FirstVisitContext } from '../../contexts/FirstVisitContext';
 
 const SecondStep = props => {
+  const { setCurrentDisplay, setIsMan } = useContext(FirstVisitContext);
   const functionsHandler = event => {
-    props.setGender(event);
-    props.onClick('ThirdStep');
- }
+    setIsMan(event);
+    setCurrentDisplay('ThirdStep');
+  };
+
   return (
     <>
       <p className="text-center">Peux-tu indiquer son sexe ?</p>
@@ -13,7 +16,7 @@ const SecondStep = props => {
           <button
             type="button"
             className="btn btn-outline-warning mx-auto d-block"
-            onClick={() => props.onClick('FirstStep')}
+            onClick={() => setCurrentDisplay('FirstStep')}
           >
             Retour
           </button>

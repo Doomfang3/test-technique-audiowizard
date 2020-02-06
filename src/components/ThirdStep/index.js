@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FirstVisitContext } from '../../contexts/FirstVisitContext';
 
-const ThirdStep = props => {
+const ThirdStep = () => {
+  const { firstname, lastname, isMan } = useContext(FirstVisitContext);
+
   return (
     <p className="text-center">
-      {props.isMan ? 'Monsieur' : 'Madame'} {props.firstname} {props.lastname}
+      {isMan ? 'Monsieur' : 'Madame'} {firstname} {lastname}
     </p>
   );
 };

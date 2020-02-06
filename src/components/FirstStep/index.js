@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FirstVisitContext } from '../../contexts/FirstVisitContext';
 
 const FirstStep = props => {
+  const {
+    setCurrentDisplay,
+    firstname,
+    setFirstname,
+    lastname,
+    setLastname,
+  } = useContext(FirstVisitContext);
   const handleSubmit = event => {
     event.preventDefault();
-    props.setFirstname(document.getElementById('input-firstname').value);
-    props.setLastname(document.getElementById('input-lastname').value);
-    props.onClick('SecondStep');
+    setFirstname(document.getElementById('input-firstname').value);
+    setLastname(document.getElementById('input-lastname').value);
+    setCurrentDisplay('SecondStep');
   };
 
   return (
@@ -19,6 +27,7 @@ const FirstStep = props => {
               type="text"
               className="form-control form-control-lg"
               placeholder="Nom"
+              value={lastname !== '' ? lastname : null}
               required
             />
           </div>
@@ -28,11 +37,12 @@ const FirstStep = props => {
               type="text"
               className="form-control form-control-lg"
               placeholder="Prénom"
+              value={firstname !== '' ? firstname : null}
               required
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary mx-auto d-block m-4">
+        <button type="submit" className="btn btn-success mx-auto d-block m-4">
           Suivant
         </button>
       </form>

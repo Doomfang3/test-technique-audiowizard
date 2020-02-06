@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { FirstVisitContext } from './contexts/FirstVisitContext';
+import LinkContextProvider from './contexts/LinkContext';
 
 import MainApp from './components/MainApp';
 import TopNav from './components/TopNav';
@@ -10,44 +12,23 @@ import ThirdStep from './components/ThirdStep';
 import logo from './images/audowizard-logo-white.png';
 
 const App = () => {
-  const [CurrentDisplay, setCurrentDisplay] = useState('FirstStep');
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [isMan, setIsMan] = useState(true);
-
-  const navLinks = {
-    textArray: [
-      'Première visite',
-      'Adaptation',
-      'Patients en lorem',
-      'Patients appareillés',
-      'Relances',
-      'Statistiques',
-    ],
-    linkArray: ['#', '#', '#', '#', '#', '#'],
-  };
+  const { CurrentDisplay } = useContext(FirstVisitContext);
 
   return (
     <>
       <TopNav image={logo} buttonText="Mon Compte" />
       <div className="container-fluid">
         <div className="row">
-          <LeftNav navLinks={navLinks} />
+          <LinkContextProvider>
+            <LeftNav />
+          </LinkContextProvider>
           <MainApp>
             {CurrentDisplay === 'FirstStep' ? (
-              <FirstStep
-                onClick={setCurrentDisplay}
-                setFirstname={setFirstname}
-                setLastname={setLastname}
-              />
+              <FirstStep />
             ) : CurrentDisplay === 'SecondStep' ? (
-              <SecondStep onClick={setCurrentDisplay} setGender={setIsMan} />
+              <SecondStep />
             ) : CurrentDisplay === 'ThirdStep' ? (
-              <ThirdStep
-                isMan={isMan}
-                firstname={firstname}
-                lastname={lastname}
-              />
+              <ThirdStep />
             ) : (
               <p className="text-center">On dirait qu'il y a une erreur...</p>
             )}
